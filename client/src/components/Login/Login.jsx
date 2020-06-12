@@ -23,13 +23,9 @@ function Login() {
                 email: email,
                 password: password
             })
-            console.log(res);
 
-            console.log(res.data.message);
-            console.log(res.data.token);
 
             if (res.data.message) {
-                console.log(res.data.message);
                 seterror(res.data.message)
 
             }
@@ -38,7 +34,6 @@ function Login() {
                 localStorage.clear('login')
                 localStorage.setItem('login', res.data.token)
                 setRedirectTo('/dashboard')
-                console.log("loggedin from front");
 
             }
 
@@ -54,12 +49,12 @@ function Login() {
             <form className={styles.LoginForm} >
                 <h2>Login</h2>
                 {error && <h4 className={styles.errorh4}>{error}</h4>}
-                <input type="text"
+                <input type="email"
                     placeholder="email"
                     value={email}
                     className={styles.loginInput}
                     onChange={(e) => setemail(e.target.value)}></input>
-                <input type="text"
+                <input type="password"
                     placeholder="Password"
                     className={styles.loginInput}
                     value={password}

@@ -26,9 +26,7 @@ function SignUp() {
                 password2: conPassword,
                 email: email
             })
-            console.log(res);
 
-            console.log(res.data.errors);
             if (res.data.errors) {
                 seterror(res.data.errors)
             }
@@ -52,7 +50,7 @@ function SignUp() {
             <form className={styles.LoginForm} >
                 <h2>Sign Up</h2>
                 {error && error.map((e, i) => <div key={i}><h4 className={styles.errorh4}>{e.msg}</h4></div>)}
-                <input type="text"
+                <input type="email"
                     placeholder="email"
                     value={email}
                     className={styles.loginInput}
@@ -62,12 +60,12 @@ function SignUp() {
                     value={username}
                     className={styles.loginInput}
                     onChange={(e) => setUsername(e.target.value)}></input>
-                <input type="text"
+                <input type="password"
                     placeholder="Password"
                     value={password}
                     className={styles.loginInput}
                     onChange={(e) => setPassword(e.target.value)}></input>
-                <input type="text"
+                <input type="password"
                     placeholder="Confirm Password"
                     value={conPassword}
                     className={styles.loginInput}

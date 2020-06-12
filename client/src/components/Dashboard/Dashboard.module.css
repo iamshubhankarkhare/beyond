@@ -1,0 +1,54 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background: #00171f;
+}
+
+h1 {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 4rem;
+}
+
+.myBtn {
+    padding: 24px 48px;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: #fff;
+    border: 2px solid #fff;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    cursor: crosshair;
+}
+
+.myBtn:hover {
+    background: rgba(255, 255, 255, 0.6);
+    color: #101010;
+}
+
+.myBtn a,
+a:visited {
+    color: #fff;
+    outline: none;
+    text-decoration: none;
+}
+
+.myBtn a:hover {
+    color: #101010;
+
+}
+
+@media(max-width:760px) {
+    h1 {
+        font-size: 2rem;
+    }
+}

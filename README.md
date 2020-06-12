@@ -1,9 +1,9 @@
 # beyond
-*npm install 
-*npm client-install
-*npm run dev to run both server and client
-*npm run client to run react
-*npm start to run server (nodejs)
+* npm install 
+* npm client-install
+* npm run dev to run both server and client
+* npm run client to run react
+* npm start to run server (nodejs)
 
 
 

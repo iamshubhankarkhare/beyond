@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
+const jwt = require('jsonwebtoken');
 // Load User model
 const User = require('../models/User');
-const { forwardAuthenticated } = require('../config/auth');
 
-// Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
-
-// Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 // Register
 router.post('/register', (req, res) => {
@@ -73,20 +67,44 @@ router.post('/register', (req, res) => {
         });
       }
     });
+
   }
 });
 
 // Login
 router.post('/login', (req, res, next) => {
   console.log("login called");
-  console.log(req.body);
+  const { email, password } = req.body;
+  console.log(email, password);
+  if (!email || !password) {
+    res.send({ message: "Please fill all the fields!" })
+  }
+  else {
 
+    User.findOne({
+      email: email
+    }).then(user => {
+      if (!user) {
+        res.send({ message: 'That email is not registered' });
+      }
 
-  passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next);
+      // Match password
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if (err) throw err;
+        if (isMatch) {
+          console.log("match called");
+          var token = jwt.sign({ email: email }, 'shhhhh');
+
+          res.send({
+            token: token
+
+          })
+        } else {
+          res.send({ message: 'Password incorrect' });
+        }
+      });
+    });
+  }
 });
 
 // Logout
